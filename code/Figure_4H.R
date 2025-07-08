@@ -7,7 +7,7 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "D:\\01_科研项目\\Project3_zhengzhendong\\submit_version"
+project_dir = ""
 source(paste(project_dir,"code\\tools.R",sep="\\"))
 input_dir = paste0(project_dir,"\\", "input")
 output_dir = paste0(project_dir,"\\", "output")
