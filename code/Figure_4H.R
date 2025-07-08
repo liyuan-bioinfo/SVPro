@@ -7,7 +7,7 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = ""
+project_dir = "SVPro" # set this to the home of actual project dir
 source(paste(project_dir,"code\\tools.R",sep="\\"))
 input_dir = paste0(project_dir,"\\", "input")
 output_dir = paste0(project_dir,"\\", "output")
