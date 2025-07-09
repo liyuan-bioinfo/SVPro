@@ -423,7 +423,7 @@ process_data_zone_func = function(dat1 = df_v1_Amy, file_name = "v1_Amy")
   #...
   
   dat1 <- dat1 %>%
-    filter(PG.Genes != "(Bos") %>%
+    #filter(PG.Genes != "(Bos") %>%
     dplyr::select(matches("Student|Gene|PG.ProteinGroups")) %>%
     dplyr::select(c(1, 3, 5, 7, 8)) %>%
     rename(
