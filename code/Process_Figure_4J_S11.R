@@ -90,7 +90,7 @@ input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
       }
       
       # save file
-      write.csv(result_df, file = paste0(input_dir,"\\enrich_proteins_",region,".csv"), row.names = FALSE)  
+      write.csv(result_df, file = paste0(input_dir,"\\enrich_proteins_WT_",region,".csv"), row.names = FALSE)  
     }
   }
   
