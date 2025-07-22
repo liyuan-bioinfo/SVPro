@@ -10,7 +10,7 @@ rm(list = ls())
 
 
 # set basic info.
-project_dir = "D:\\01_科研项目\\Project3_zhengzhendong\\submit_version"
+project_dir = "SVPro" # modify this to the work dir
 input_dir = paste0(project_dir,"\\", "input")
 output_dir = paste0(project_dir,"\\", "output")
 
@@ -57,8 +57,8 @@ figure_no = "Figure_S14B_"
   p2=formula_res_cutoff %>% barplot(label_format=50,showCategory=10,font.size=14,fill="p.adjust",size="count") +
     theme(panel.grid = element_blank(),axis.ticks.y = element_blank()) +
     scale_colour_gradientn(colours=colorRampPalette(RColorBrewer::brewer.pal(n = 7, name = "YlOrRd")[3:6])(30))
-  p2$data$p.adjust <- -log10(p2$data$p.adjust)  # 转换 p.adjust 列
-  p2 <- p2 + aes(fill = p.adjust) +  # 更新 aes 映射
+  p2$data$p.adjust <- -log10(p2$data$p.adjust)
+  p2 <- p2 + aes(fill = p.adjust) +
     scale_fill_gradientn(colours = colorRampPalette(RColorBrewer::brewer.pal(n = 7, name = "YlOrRd")[3:6])(30), name = "-log10(p.adjust)")
   
   # save dot plot
