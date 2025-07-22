@@ -99,7 +99,7 @@ rm(list = ls())
 # DEP analysis
 {
   rm(list=ls())
-  project_dir = "D:\\01_科研项目\\Project3_zhengzhendong\\submit_version"
+  project_dir = "SVPro" # modify this to the work dir
   input_dir = paste0(project_dir,"\\", "input")
   output_dir = paste0(project_dir,"\\", "output")
   
@@ -183,7 +183,7 @@ rm(list = ls())
  
   rm(list=ls())
   
-  project_dir = "D:\\01_科研项目\\Project3_zhengzhendong\\submit_version"
+  project_dir = "SVPro" # modify this to the work dir
   
   input_dir = paste0(project_dir,"\\", "input")
   output_dir = paste0(project_dir,"\\", "output")
