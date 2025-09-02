@@ -7,12 +7,12 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "SVPro" # set this to the home of actual project dir
-source(paste(project_dir,"code\\tools.R",sep="\\"))
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+project_dir = "/home/path/to/SVPro" # set your own project directory
+source(paste0(project_dir,"/code/tools.R"))
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
+input_path = paste0(input_dir,"/", "SVPro_resource.xlsx")
 
 figure_no = "Figure_4H"
 
@@ -42,12 +42,12 @@ figure_no = "Figure_4H"
   
   
   # load data
-  df_v1_CC_GFAP = read_xlsx(input_path, sheet = "WT_CC-GFAP")
-  df_v2_CC_NeuN = read_xlsx(input_path, sheet = "WT_CC-NeuN")
-  df_v3_CC_NF200 = read_xlsx(input_path, sheet = "WT_CC-NF200")
-  df_v4_Hi_GFAP = read_xlsx(input_path, sheet = "WT_Hi-GFAP")
-  df_v5_Hi_NeuN = read_xlsx(input_path, sheet = "WT_Hi-NeuN")
-  df_v6_Hi_NF200 = read_xlsx(input_path, sheet = "WT_Hi-NF200")
+  df_v1_CC_GFAP = read_xlsx(input_path, sheet = "Fig 4H_WT_CC-GFAP")
+  df_v2_CC_NeuN = read_xlsx(input_path, sheet = "Fig 4H_WT_CC-NeuN")
+  df_v3_CC_NF200 = read_xlsx(input_path, sheet = "Fig 4H_WT_CC-NF200")
+  df_v4_Hi_GFAP = read_xlsx(input_path, sheet = "Fig 4H_WT_Hi-GFAP")
+  df_v5_Hi_NeuN = read_xlsx(input_path, sheet = "Fig 4H_WT_Hi-NeuN")
+  df_v6_Hi_NF200 = read_xlsx(input_path, sheet = "Fig 4H_WT_Hi-NF200")
   
   # process
   df_v1_CC_GFAP_vol = process_data_zone_func(dat1 = df_v1_CC_GFAP, file_name = "v1_CC_GFAP")
@@ -60,7 +60,7 @@ figure_no = "Figure_4H"
   df_merge_six = rbind(df_v1_CC_GFAP_vol, df_v2_CC_NeuN_vol , df_v3_CC_NF200_vol, df_v4_Hi_GFAP_vol, df_v5_Hi_NeuN_vol,df_v6_Hi_NF200_vol)
   
   # plot
-  pdf(paste0(output_dir,"\\",figure_no,"_Mutli_volcano_marker_varied_cell_type.pdf"))
+  pdf(paste0(output_dir,"/",figure_no,"_Mutli_volcano_marker_varied_cell_type.pdf"))
   Multi_volcano_vary_marker_func(df = df_merge_six, compare_num = 6, manual_gene = TRUE, BG_length_equal = TRUE, size_num =3)
   dev.off()
 
