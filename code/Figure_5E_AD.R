@@ -6,12 +6,12 @@ library(readxl)
 
 rm(list = ls())
 
-project_dir = "SVPro" # set this to the home of actual project dir
-source(paste(project_dir,"code\\tools.R",sep="\\"))
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+project_dir = "/aaa/zihanwu/yyyli2/project_zzd/SVPro" # set your own project directory
+source(paste(project_dir,"code","tools.R",sep="/"))
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
+input_path = paste0(input_dir,"/", "SVPro_resource.xlsx")
 
 figure_no = "Figure_5E"
 
@@ -41,10 +41,10 @@ figure_no = "Figure_5E"
   
   
   # load data
-  df_v1_Amy = read_xlsx(input_path, sheet = "AD_Amy")
-  df_v2_CC = read_xlsx(input_path, sheet = "AD_CC")
-  df_v3_Hi = read_xlsx(input_path, sheet = "AD_Hi")
-  df_v4_Th = read_xlsx(input_path, sheet = "AD_Th")
+  df_v1_Amy = read_xlsx(input_path, sheet = paste0("Fig 5E_","AD_Amy"))
+  df_v2_CC = read_xlsx(input_path, sheet = paste0("Fig 5E_","AD_CC"))
+  df_v3_Hi = read_xlsx(input_path, sheet = paste0("Fig 5E_","AD_Hi"))
+  df_v4_Th = read_xlsx(input_path, sheet = paste0("Fig 5E_","AD_Th"))
   
   # process data
   df_v1_Amy_vol = process_data_zone_func(dat1 = df_v1_Amy, file_name = "v1_Amy")
@@ -55,7 +55,7 @@ figure_no = "Figure_5E"
   df_merge = rbind(df_v1_Amy_vol, df_v2_CC_vol, df_v3_Hi_vol, df_v4_Th_vol)
   
   # plot and save
-  pdf(paste("output\\",figure_no,"_Mutli_volcano_munal_add_gene.pdf", sep = ""))
+  pdf(paste0("output","/",figure_no,"_Mutli_volcano_munal_add_gene.pdf"))
   Multi_volcano_label_gene_manual_func(df = df_merge, compare_num = 4, manual_gene = TRUE, BG_length_equal = TRUE, size_num =3)
   dev.off()
 }
