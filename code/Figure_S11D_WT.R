@@ -8,13 +8,12 @@ rm(list = ls())
 
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
-
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+project_dir = "/home/path/to/SVPro" # set your own project directory
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
 figure_no = "Figure_S11D"
-total_enrich_df = read.csv(paste0(input_dir,"\\enrich_proteins_WT.csv"),header = T,row.names = 1)
+total_enrich_df = read.csv(paste0(input_dir,"/","enrich_proteins_WT.csv"),header = T,row.names = 1)
 
 # GFAP [Astrocyte]
 {
@@ -57,9 +56,9 @@ total_enrich_df = read.csv(paste0(input_dir,"\\enrich_proteins_WT.csv"),header =
 # GFAP [Astrocyte]
 {
 
-  labeled_df_CC = readxl::read_xlsx(path=paste0(input_dir,"\\WT_GFAP_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="CC") %>% 
+  labeled_df_CC = readxl::read_xlsx(path=paste0(input_dir,"/","WT_GFAP_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="CC") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
-  labeled_df_Hi = readxl::read_xlsx(path=paste0(input_dir,"\\WT_GFAP_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="Hi") %>% 
+  labeled_df_Hi = readxl::read_xlsx(path=paste0(input_dir,"/","WT_GFAP_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="Hi") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
   
   selected_ID = c(labeled_df_CC$ID, labeled_df_Hi$ID)
@@ -74,7 +73,7 @@ total_enrich_df = read.csv(paste0(input_dir,"\\enrich_proteins_WT.csv"),header =
   
   
   # save dot plot
-  pdf(file=paste0(output_dir,"\\",figure_no,"_WT_GFAP_GOBP.pdf"),width = 6,height = 4)
+  pdf(file=paste0(output_dir,"/",figure_no,"_WT_GFAP_GOBP.pdf"),width = 6,height = 4)
   print(p1)
   dev.off()     
 }
