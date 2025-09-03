@@ -10,22 +10,20 @@ rm(list = ls())
 
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+project_dir = "/home/path/to/SVPro" # set your own project directory
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
 # region_df = read.csv(file=paste0(input_dir,"\\enrich_proteins_WT_CC.csv"),header = T,row.names = 1, check.names = F)
-obj_list = readRDS(paste0(input_dir, "\\AD_obj_list.rds"))
+obj_list = readRDS(paste0(input_dir,"/", "AD_obj_list.rds"))
 meta_df = obj_list$meta_df        
 data_df = obj_list$data_df
 
 
 figure_no = "Figure_6_boxplots_"
 
-
 {
-  
-  
+    
   anno_df = na.omit(obj_list$anno_df[row.names(data_df),])
   
   i_list = which(anno_df$gene %in% c("Apoe","Clu","Slc6a11","Gpc4"))
@@ -87,7 +85,7 @@ figure_no = "Figure_6_boxplots_"
   
   # arrange and save plot
   p1 = ggpubr::ggarrange(plotlist = plot_list, ncol = 2,nrow = 2)
-  pdf(file=paste0(output_dir,"\\",figure_no,"_t-test.pdf"),width = 8,height = 8)
+  pdf(file=paste0(output_dir,"/",figure_no,"_t-test.pdf"),width = 8,height = 8)
   print(p1)
   dev.off()
   
