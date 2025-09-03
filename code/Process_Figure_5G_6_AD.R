@@ -9,13 +9,13 @@ rm(list = ls())
 
 # Basic pre-process
 {
-  project_dir = "SVPro" # modify this to the work dir
+  project_dir = "/home/path/to/SVPro" # set your own project directory
   
-  input_dir = paste0(project_dir,"\\", "input")
-  output_dir = paste0(project_dir,"\\", "output")
+  input_dir = paste0(project_dir,"/", "input")
+  output_dir = paste0(project_dir,"/", "output")
   
-  input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
-  input_meta_path = paste0(input_dir,"\\", "AD_data_20250226.xlsx")
+  input_path = paste0(input_dir,"/", "SVPro_resource.xlsx")
+  input_meta_path = paste0(input_dir,"/", "AD_data_20250226.xlsx")
 
 
   # load meta files and order meta
@@ -26,7 +26,7 @@ rm(list = ls())
   meta_df = meta_df %>% arrange(Region)
   
   # load quantified data
-  data_df = readxl::read_xlsx(input_path, sheet="Normalized data_AD_Exp") %>% as.data.frame() # 2658 * 15
+  data_df = readxl::read_xlsx(input_path, sheet=paste0("Fig 5(6)_", "Normalized_Exp_Input")) %>% as.data.frame() # 2658 * 15
   dim(data_df)
   row.names(data_df) = data_df$`PG.ProteinGroups`
   
@@ -35,7 +35,7 @@ rm(list = ls())
   protein_lists <- list()
   for (ct in ct4_order){
     # print(ct)
-    temp_df = readxl::read_xlsx(input_path, sheet=ct) %>% as.data.frame() # 2658
+    temp_df = readxl::read_xlsx(input_path, sheet=paste0("Fig 5E_",ct)) %>% as.data.frame() # 2658
     temp_df = temp_df[which(temp_df$`-Log Student's T-test p-value NAB228_Ab.omitted` >= -log10(0.05)  &
                               temp_df$`Student's T-test Difference NAB228_Ab.omitted` >= log2(2)),]
     temp_pid = temp_df$PG.ProteinGroups
@@ -92,18 +92,18 @@ rm(list = ls())
   obj_list$ct4_order = ct4_order
   obj_list$ct4_color = c("#00A087FF", "#3C5488FF", "#F39B7FFF", "#8491B4FF")
   
-  saveRDS(obj_list, file=paste0(input_dir,"\\AD_obj_list.rds"))
+  saveRDS(obj_list, file=paste0(input_dir,"/","AD_obj_list.rds"))
   
 }
 
 # DEP analysis
 {
   rm(list=ls())
-  project_dir = "SVPro" # modify this to the work dir
-  input_dir = paste0(project_dir,"\\", "input")
-  output_dir = paste0(project_dir,"\\", "output")
+  project_dir = "/home/path/to/SVPro" # set your own project directory
+  input_dir = paste0(project_dir,"/", "input")
+  output_dir = paste0(project_dir,"/", "output")
   
-  obj_list = readRDS(file = paste0(input_dir,"\\AD_obj_list.rds"))
+  obj_list = readRDS(file = paste0(input_dir,"/","AD_obj_list.rds"))
   
   meta_df = obj_list$meta_df        
   data_df = obj_list$data_df
@@ -173,7 +173,7 @@ rm(list = ls())
   dep_df = dep_df %>% arrange(region, log2FC)
   
   obj_list$dep_df = dep_df
-  saveRDS(obj_list, file=paste0(input_dir,"\\AD_obj_list.rds"))
+  saveRDS(obj_list, file=paste0(input_dir,"/","AD_obj_list.rds"))
   
 }
   
@@ -183,12 +183,11 @@ rm(list = ls())
  
   rm(list=ls())
   
-  project_dir = "SVPro" # modify this to the work dir
+  project_dir = "/home/path/to/SVPro" # set your own project directory
+  input_dir = paste0(project_dir,"/", "input")
+  output_dir = paste0(project_dir,"/", "output")
   
-  input_dir = paste0(project_dir,"\\", "input")
-  output_dir = paste0(project_dir,"\\", "output")
-  
-  obj_list = readRDS(file = paste0(input_dir,"\\AD_obj_list.rds"))
+  obj_list = readRDS(file = paste0(input_dir,"/","AD_obj_list.rds"))
   meta_df = obj_list$meta_df        
   data_df = obj_list$data_df
 
@@ -219,9 +218,6 @@ rm(list = ls())
   
 
   obj_list$dep_ct4_df_FC1_2 = output_df
-  saveRDS(obj_list, file=paste0(input_dir,"\\AD_obj_list.rds"))
+  saveRDS(obj_list, file=paste0(input_dir,"/","AD_obj_list.rds"))
   
 }
-
-  
-
