@@ -10,11 +10,11 @@ rm(list = ls())
 
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+project_dir = "/home/path/to/SVPro" # set your own project directory
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-obj_list = readRDS(paste0(input_dir, "\\AD_obj_list.rds"))
+obj_list = readRDS(paste0(input_dir,"/", "AD_obj_list.rds"))
 meta_df = obj_list$meta_df  
 dep_df = obj_list$dep_ct4_df_FC1_2
 ct_order = obj_list$ct4_order
@@ -58,7 +58,7 @@ figure_no = "Figure_5G_"
     scale_colour_gradientn(colours=colorRampPalette(RColorBrewer::brewer.pal(n = 7, name = "YlOrRd")[3:6])(30))
   
   # save dot plot
-  pdf(file=paste0(output_dir,"\\",figure_no,"_AD_GOBP_compare.pdf"),width = 7,height = 6)
+  pdf(file=paste0(output_dir,"/",figure_no,"_AD_GOBP_compare.pdf"),width = 7,height = 6)
   print(p2)
   dev.off()   
   
