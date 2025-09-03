@@ -8,11 +8,11 @@ rm(list = ls())
 
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+project_dir = "/home/path/to/SVPro" # set your own project directory
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-region_df = read.csv(file=paste0(input_dir,"\\enrich_proteins_WT_CC.csv"),header = T,row.names = 1, check.names = F)
+region_df = read.csv(file=paste0(input_dir,"/","enrich_proteins_WT_CC.csv"),header = T,row.names = 1, check.names = F)
 
 figure_no = "Figure_S11A"
 
@@ -55,11 +55,11 @@ figure_no = "Figure_S11A"
   # write.csv(x = formula_res_cutoff@compareClusterResult, file=paste0("xxxx.csv"))
   
   # load labeled items
-  labeled_df_NF200 = readxl::read_xlsx(path=paste0(input_dir,"\\Venn_protein549_CC_GOBP_formula_res_2025-03-17.xlsx"),sheet="NF200") %>% 
+  labeled_df_NF200 = readxl::read_xlsx(path=paste0(input_dir,"/","Venn_protein549_CC_GOBP_formula_res_2025-03-17.xlsx"),sheet="NF200") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
-  labeled_df_NeuN = readxl::read_xlsx(path=paste0(input_dir,"\\Venn_protein549_CC_GOBP_formula_res_2025-03-17.xlsx"),sheet="NeuN") %>% 
+  labeled_df_NeuN = readxl::read_xlsx(path=paste0(input_dir,"/","Venn_protein549_CC_GOBP_formula_res_2025-03-17.xlsx"),sheet="NeuN") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
-  labeled_df_GFAP = readxl::read_xlsx(path=paste0(input_dir,"\\Venn_protein549_CC_GOBP_formula_res_2025-03-17.xlsx"),sheet="GFAP") %>% 
+  labeled_df_GFAP = readxl::read_xlsx(path=paste0(input_dir,"/","Venn_protein549_CC_GOBP_formula_res_2025-03-17.xlsx"),sheet="GFAP") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
   
   selected_ID = c(labeled_df_NF200$ID, labeled_df_NeuN$ID, labeled_df_GFAP$ID)
@@ -75,7 +75,7 @@ figure_no = "Figure_S11A"
     scale_colour_gradientn(colours=colorRampPalette(RColorBrewer::brewer.pal(n = 7, name = "YlOrRd")[3:6])(30), name = "-log10(p.adjust)")
   
   # save dot plot
-  pdf(file=paste0(output_dir,"\\",figure_no,"_CC_GOBP.pdf"),width = 6,height = 6)
+  pdf(file=paste0(output_dir,"/",figure_no,"_CC_GOBP.pdf"),width = 6,height = 6)
   print(p1)
   dev.off() 
   
