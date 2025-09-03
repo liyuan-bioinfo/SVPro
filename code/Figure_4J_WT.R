@@ -6,16 +6,15 @@ library(readxl)
 
 rm(list = ls())
 
-
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
+project_dir = "/aaa/zihanwu/yyyli2/project_zzd/SVPro" # set your own project directory
 
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
 figure_no = "Figure_4J"
 
-total_enrich_df = read.csv(paste0(input_dir,"\\enrich_proteins_WT.csv"),header = T,row.names = 1)
+total_enrich_df = read.csv(paste0(input_dir,"/","enrich_proteins_WT.csv"),header = T,row.names = 1)
 
 # NF200
 # enrich analysis
@@ -60,9 +59,9 @@ total_enrich_df = read.csv(paste0(input_dir,"\\enrich_proteins_WT.csv"),header =
   # write.csv(x = formula_res_cutoff@compareClusterResult, file=paste0("xxx.csv"))  
   
   # load labeled items
-  labeled_df_CC = readxl::read_xlsx(path=paste0(input_dir,"\\WT_NF200_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="CC") %>% 
+  labeled_df_CC = readxl::read_xlsx(path=paste0(input_dir,"/","WT_NF200_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="CC") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
-  labeled_df_Hi = readxl::read_xlsx(path=paste0(input_dir,"\\WT_NF200_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="Hi") %>% 
+  labeled_df_Hi = readxl::read_xlsx(path=paste0(input_dir,"/","WT_NF200_Compare_GOBP__formula_res_2025-03-17.xlsx"),sheet="Hi") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
   
   selected_ID = c(labeled_df_CC$ID, labeled_df_Hi$ID)
@@ -77,7 +76,7 @@ total_enrich_df = read.csv(paste0(input_dir,"\\enrich_proteins_WT.csv"),header =
     scale_colour_gradientn(colours=colorRampPalette(RColorBrewer::brewer.pal(n = 7, name = "YlOrRd")[3:6])(30), name = "-log10(p.adjust)")    
   
   # save dot plot
-  pdf(file=paste0(output_dir,"\\",figure_no,"_WT_NF200_GOBP.pdf"), width=6, height=4)
+  pdf(file=paste0(output_dir,"/",figure_no,"_WT_NF200_GOBP.pdf"), width=6, height=4)
   print(p1)
   dev.off()     
  
