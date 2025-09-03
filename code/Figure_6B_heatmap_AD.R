@@ -7,14 +7,14 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
+project_dir = "/home/path/to/SVPro" # set your own project directory
 
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-input_meta_path = paste0(input_dir,"\\", "AD_data_20250226.xlsx")
+input_meta_path = paste0(input_dir,"/", "AD_data_20250226.xlsx")
 
-obj_list = readRDS(file=paste0(input_dir,"\\","AD_obj_list.rds"))
+obj_list = readRDS(file=paste0(input_dir,"/","AD_obj_list.rds"))
 meta_df = obj_list$meta_df        
 data_df = obj_list$data_df
 
@@ -38,7 +38,7 @@ figure_no = "Figure_6B"
   breaks = seq(range_all[1], range_all[2], length.out = 101)
   p1 = pheatmap::pheatmap(scale_plot_df,scale="none", color=my_palette,breaks=breaks,cellwidth = 13,cellheight = 10,
                           cluster_cols=F,cluster_rows=F,silence=T,show_rownames=T,fontsize=10)  
-  pdf(file=paste0(output_dir, "\\", figure_no,"_heatmap_enrich_selected_30_",Sys.Date(),".pdf"),width=7,height = 7)
+  pdf(file=paste0(output_dir, "/", figure_no,"_heatmap_enrich_selected_30_",Sys.Date(),".pdf"),width=7,height = 7)
   print(p1)
   dev.off()
   
