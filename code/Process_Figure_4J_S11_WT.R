@@ -7,7 +7,7 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "/aaa/zihanwu/yyyli2/project_zzd/SVPro" # set your own project directory
+project_dir = "/home/path/to/SVPro" # set your own project directory
 input_dir = paste0(project_dir,"/", "input")
 output_dir = paste0(project_dir,"/", "output")
 
@@ -94,3 +94,4 @@ input_path = paste0(input_dir,"/", "SVPro_resource.xlsx")
   
   
 }
+
