@@ -7,12 +7,11 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
+project_dir = "/home/path/to/SVPro" # set your own project directory
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
-
-region_df = read.csv(file=paste0(input_dir,"\\enrich_proteins_WT_Hi.csv"),header = T,row.names = 1)
+region_df = read.csv(file=paste0(input_dir,"/","enrich_proteins_WT_Hi.csv"),header = T,row.names = 1)
 figure_no = "Figure_S11B"
 
 # Hi [Hippocampus]
@@ -56,11 +55,11 @@ figure_no = "Figure_S11B"
   
   # load labeled items  
   
-  labeled_df_NF200 = readxl::read_xlsx(path=paste0(input_dir,"\\Venn_protein438_Hi_GOBP_formula_res_2025-03-17.xlsx"),sheet="NF200") %>% 
+  labeled_df_NF200 = readxl::read_xlsx(path=paste0(input_dir,"/","Venn_protein438_Hi_GOBP_formula_res_2025-03-17.xlsx"),sheet="NF200") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
-  labeled_df_NeuN = readxl::read_xlsx(path=paste0(input_dir,"\\Venn_protein438_Hi_GOBP_formula_res_2025-03-17.xlsx"),sheet="NeuN") %>% 
+  labeled_df_NeuN = readxl::read_xlsx(path=paste0(input_dir,"/","Venn_protein438_Hi_GOBP_formula_res_2025-03-17.xlsx"),sheet="NeuN") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
-  labeled_df_GFAP = readxl::read_xlsx(path=paste0(input_dir,"\\Venn_protein438_Hi_GOBP_formula_res_2025-03-17.xlsx"),sheet="GFAP") %>% 
+  labeled_df_GFAP = readxl::read_xlsx(path=paste0(input_dir,"/","Venn_protein438_Hi_GOBP_formula_res_2025-03-17.xlsx"),sheet="GFAP") %>% 
     as.data.frame()%>% dplyr::filter(label == 1)
   
   
@@ -79,7 +78,7 @@ figure_no = "Figure_S11B"
   
   
   # save dot plot
-  pdf(file=paste0(output_dir,"\\",figure_no,"_Hi_GOBP.pdf",Sys.Date(),".pdf"),width = 6,height = 6)
+  pdf(file=paste0(output_dir,"/",figure_no,"_Hi_GOBP.pdf",Sys.Date(),".pdf"),width = 6,height = 6)
   print(p1)
   dev.off() 
   
