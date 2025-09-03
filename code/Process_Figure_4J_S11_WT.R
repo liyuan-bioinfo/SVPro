@@ -7,23 +7,22 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "SVPro" # modify this to the work dir
+project_dir = "/aaa/zihanwu/yyyli2/project_zzd/SVPro" # set your own project directory
+input_dir = paste0(project_dir,"/", "input")
+output_dir = paste0(project_dir,"/", "output")
 
-input_dir = paste0(project_dir,"\\", "input")
-output_dir = paste0(project_dir,"\\", "output")
-
-input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
+input_path = paste0(input_dir,"/", "SVPro_resource.xlsx")
 
 {
 
-  # Venn plot, obtain union proteins for three cell types
+  # Venn plot, obtain unique proteins for three cell types (GFAP, NeuN and NF200) using enriched PG.
   {
     ct6_order = c("WT_CC-GFAP","WT_Hi-GFAP","WT_CC-NeuN","WT_Hi-NeuN","WT_CC-NF200","WT_Hi-NF200")
     union_pids <- c()
     protein_lists <- list()
     
     for (ct in ct6_order) {
-      temp_df = readxl::read_xlsx(input_path, sheet=ct) %>% as.data.frame()
+      temp_df = readxl::read_xlsx(input_path, sheet=paste0("Fig 4H_", ct)) %>% as.data.frame()
       temp_df = temp_df[which(temp_df[10] >= -log10(0.05)  & #-Log Student's T-test p-value 
                                 temp_df[12] >= log2(2)),] #Student's T-test Difference CC-NeuN_CC-Ctr
       
@@ -45,12 +44,12 @@ input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
     }
     
     # save file
-    write.csv(result_df, file = paste0(input_dir,"\\enrich_proteins_WT.csv"), row.names = FALSE)  
+    write.csv(result_df, file = paste0(input_dir,"/","enrich_proteins_WT.csv"), row.names = FALSE)  
     dim(result_df) # 1349
   }
   
   
-  # Venn plot, obtain union proteins for two regions
+  # Venn plot, obtain unique proteins for two regions (CC and Hi) using enriched PG.
   {
     region_order = c("CC","Hi")
     for (region in region_order){
@@ -60,14 +59,13 @@ input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
         ct6_order = c("WT_Hi-GFAP",  "WT_Hi-NeuN",  "WT_Hi-NF200")    
       }
       
-      
-      
+            
       union_pids <- c()
       protein_lists <- list()
       
       for (ct in ct6_order) {
 
-        temp_df = readxl::read_xlsx(input_path, sheet=ct) %>% as.data.frame()
+        temp_df = readxl::read_xlsx(input_path, sheet=paste0("Fig 4H_",ct)) %>% as.data.frame()
         temp_df = temp_df[which(temp_df[10] >= -log10(0.05)  &
                                   temp_df[12] >= log2(2)),]
         
@@ -90,10 +88,9 @@ input_path = paste0(input_dir,"\\", "SVPro_resource.xlsx")
       }
       
       # save file
-      write.csv(result_df, file = paste0(input_dir,"\\enrich_proteins_WT_",region,".csv"), row.names = FALSE)  
+      write.csv(result_df, file = paste0(input_dir,"/","enrich_proteins_WT_",region,".csv"), row.names = FALSE)  
     }
   }
   
   
 }
-
