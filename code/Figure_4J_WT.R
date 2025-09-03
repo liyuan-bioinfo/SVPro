@@ -7,7 +7,7 @@ library(readxl)
 rm(list = ls())
 
 # set basic info.
-project_dir = "/aaa/zihanwu/yyyli2/project_zzd/SVPro" # set your own project directory
+project_dir = "/home/path/to/SVPro" # set your own project directory
 
 input_dir = paste0(project_dir,"/", "input")
 output_dir = paste0(project_dir,"/", "output")
@@ -82,3 +82,4 @@ total_enrich_df = read.csv(paste0(input_dir,"/","enrich_proteins_WT.csv"),header
  
 
 }
+
