@@ -6,7 +6,7 @@ library(readxl)
 
 rm(list = ls())
 
-project_dir = "/aaa/zihanwu/yyyli2/project_zzd/SVPro" # set your own project directory
+project_dir = "/home/path/to/SVPro" # set your own project directory
 source(paste(project_dir,"code","tools.R",sep="/"))
 input_dir = paste0(project_dir,"/", "input")
 output_dir = paste0(project_dir,"/", "output")
@@ -59,3 +59,4 @@ figure_no = "Figure_5E"
   Multi_volcano_label_gene_manual_func(df = df_merge, compare_num = 4, manual_gene = TRUE, BG_length_equal = TRUE, size_num =3)
   dev.off()
 }
+
